@@ -28,7 +28,7 @@
                         <form action="#" method="POST">
                             <div class="form-geoup">
                                 <input type="text" name="título" class="form-control"
-                                    placeholder="Task Title" autofocus>
+                                    placeholder="Titulo da tarefa" autofocus>
                             </div>
                             <div class="form-group">
                                 <textarea name="descricao" rows="2" class="form-control"
@@ -36,7 +36,7 @@
                                 </textarea>
                             </div>
                             <input type="submit" name="salvar" class="btn btn-success btn-block"
-                                value="Save Task">
+                                value="Salvar tarefa">
                         </form>
                     </div>
                 </div>
