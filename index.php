@@ -33,7 +33,7 @@
                             <form action="save.php" method="POST">
                                 <div class="form-geoup">
                                     <input type="text" name="title" class="form-control"
-                                        placeholder="Titulo da tarefa" autofocus>
+                                        placeholder="Titulo da tarefa" autofocus required>
                                 </div>
                                 <div class="form-group">
                                     <textarea name="description" rows="2" class="form-control"
@@ -72,7 +72,7 @@
                                         <tr>
                                             <td><?php echo $row['id']; ?></td>
                                             <td><?php echo $row['title']; ?></td>
-                                            <td><?php echo $row['description']; ?></td>
+                                            <td><?=substr($row['description'],0,20),'...'?></td>
                                             <td><?= date("d/m/Y", strtotime($row['created_at'])); ?></td>
 
                                             <td><a href="edit.php?id=<?= $row['id']; ?>" class="btn btn-secondary">
