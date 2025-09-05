@@ -1,5 +1,12 @@
 <?php
 
+session_start();
+
+if(!isset($_SESSION['user_id'])){
+    header("Location: login.php");
+    exit();
+}
+
 require_once 'conn.php';
 
 try {
@@ -15,10 +22,15 @@ try {
                 $stmt->bind_param("ss", $title, $description);
 
                 if ($stmt->execute()) {
-
-                    header("location: index.php");
+                    session_start();
+                    $_SESSION['message'] = "Tarefa salva com sucesso";
+                    $_SESSION['message_type'] = "primary";
+                    header("Location: index.php");       
                     exit();
                 } else {
+                    session_start();
+                    $_SESSION['message'] = "Erro ao executar consulta";
+                    $_SESSION['message_type'] ="danger";
                     throw new Exception("Erro ao executar a consulta: " . $stmt->error);
                 }
             } else {
@@ -31,7 +43,10 @@ try {
         throw new Exception("Método de requisição invalida!");
     }
 } catch (Exception $e) {
-    echo "Erro: " . $e->getMessage();
+        $_SESSION['message'] = "Erro: " . $e->getMessage();
+        $_SESSION['message_type'] = "primary";
+        header("Location: index.php");
+        exit();
 } finally {
     $conn->close();
 }

@@ -23,9 +23,14 @@ try{
                 $stmt ->bind_param("ssi",$title,$description,$id);
 
                 if($stmt ->execute()){
+                    $_SESSION['message'] = "Tarefa atualizada com sucesso!";
+                    $_SESSION['message_type'] = "primary";
                     header("Location: index.php");
                     exit();
                 }else{
+                    $_SESSION['message'] = "Erro ao atualizar a tarefa";
+                    $_SESSION['message_type'] = "sucess";
+                    
                     throw new Exception("Erro ao executar a atualização" . $stmt ->error);
                 }
                 $stmt ->close();
